@@ -2,7 +2,8 @@
 
 class Node
 
-    attr_reader :value, :children
+    attr_reader :value
+    attr_accessor :children
 
     def initialize(value, children = [])
         @parent = nil
@@ -18,24 +19,38 @@ class Node
 
     end
 
-    def bfs(val)
-        queue = MyQueue.new
-        queue.enqueue(self)
+    def bfs(target)
+        queue = []  # can also implement Queue class
+        queue.push(self)
         until queue.empty?
-            current_node = queue.dequeue
-            return current_node if current_node.value == val
-            current_node.children.each { |child| queue.enqueue(child) }
+            # p queue
+            current_node = queue.shift
+            return current_node if current_node.value == target
+            current_node.children.each { |child| queue.push(child) }
         end
         nil
     end
 
-    def dfs(node, val)
-        return node if node.value == val
-        node.children.each do |child|
-            target = self.dfs(child)
-            return val if target == val
+    def dfs(target) # starts with left subtree then right
+        return self if self.value == target   # base case
+        # p self
+        self.children.each do |child|
+            result = child.dfs(target)        # keep adding children to stack until we reach the bottom
+            return result unless result.nil?
         end
         nil
+    end
+
+    def iter_dfs(target) # starts with right subtree then left
+      stack = []
+      stack.push(self)
+      until stack.empty?
+        p stack
+        current_node = stack.pop
+        return current_node if current_node.value == target
+        current_node.children.each { |child| stack.push(child) }
+      end
+      nil
     end
 
 end
@@ -54,3 +69,6 @@ B.children = [D,E]
 C.children = [F,G]
 F.children = [H]
 
+# p A.bfs("H") # H node -- works!
+# p A.dfs("H") # H node -- works!
+p A.iter_dfs("H") # H node -- works!
