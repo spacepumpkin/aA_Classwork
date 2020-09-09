@@ -1,0 +1,57 @@
+<!-- this form is for POST requests CREATE/NEW and UPDATE/EDIT -->
+
+<% if type == :new %>
+    <% action_url = cats_url %> <!-- goes to create action -->
+    <% button_text = "CREATE A CAT!" %>
+<% else %>
+    <% action_url = cat_url(current_cat) %> <!-- goes to update action -->
+    <% button_text = "MAKE BETTER CAT!" %>
+<% end %>
+
+<form action="<%= action_url %>" method="POST">
+    <% if type == :edit %>
+        <input type="hidden" name="_method" value="PATCH">
+    <% end %>
+
+    <label for="">Name:
+        <input type="text" name="cat[name]" value="<%= current_cat.name %>">
+    </label>
+    <br>
+    <label for="">Birthdate:
+        <input type="date" name="cat[birth_date]" value="<%= current_cat.birth_date %>" min="1999-01-01" max="<%=Time.now.strftime('%Y-%m-%d') %>" >
+    </label>
+    <br>
+    <label for="">Color:
+        <select name="cat[color]">
+            <option value="<%= current_cat.color %>"> <%= current_cat.color %> </option>
+            <% Cat::COLORS.each do |color| %>
+                <option value="<%= color %>"> <%= color %> </option>
+            <% end %>
+        </select>
+    </label>
+    <br>
+    <label for="">Sex:
+        <% if current_cat.sex == 'M'%>
+            <input type="radio" name="cat[sex]" value="M" checked>
+                <label for="M"> M </label>
+            <input type="radio" name="cat[sex]" value="F">
+                <label for = "F" > F </label>
+        <% elsif current_cat.sex == 'F'%>
+            <input type="radio" name="cat[sex]" value="M">
+                <label for="M"> M </label>
+            <input type="radio" name="cat[sex]" value="F" checked>
+                <label for = "F" > F </label>
+        <% else %>
+            <input type="radio" name="cat[sex]" value="M">
+                <label for="M"> M </label>
+            <input type="radio" name="cat[sex]" value="F">
+                <label for = "F" > F </label>
+        <% end %>
+    </label>
+    <br>
+    <label for="">Description:
+        <textarea name="cat[description]" value="<%= current_cat.description %>"><%= current_cat.description %></textarea>
+    </label>
+    <br>
+    <input type="submit" value"<%= button_text %>">
+</form>

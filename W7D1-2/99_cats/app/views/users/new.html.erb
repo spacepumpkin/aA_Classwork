@@ -1,0 +1,11 @@
+<h1>Create a new User:</h1>
+
+<form action="<%= users_url %>" method="POST">
+    <label for="username"> Username:
+        <input type="text" name="user[user_name]" value="">
+    </label>
+    <label for="password"> Password:
+        <input type="password" name="user[password]" value="">
+    </label>
+    <input type="submit" value="Create User">
+</form>

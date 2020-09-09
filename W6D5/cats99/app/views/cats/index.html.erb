@@ -1,0 +1,18 @@
+<h1>List of our cats!</h1>
+<!-- <a href="<%= new_cat_url %>">Add new cat</a> -->
+
+<!-- Manual Way >
+<% @cats.each do |cat| %>
+<%= cat.age %>
+<%= cat.birth_date %>
+<%= cat.color %>
+<%= cat.sex %>
+<% end %> 
+-->
+
+<% @cats.each do |cat| %>
+    <h2> <%= cat.name %> </h2>
+    <%= render "cat", current_cat: cat, action: :index %>
+<% end %> 
+
+

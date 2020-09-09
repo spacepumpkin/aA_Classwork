@@ -1,0 +1,37 @@
+<!-- Partial for GET requests -- INDEX and SHOW -->
+<!-- takes in current_cat key that holds the cat (INDEX) or @cat (SHOW) variable -->
+
+<% if action == :show %>
+    <li><a href="<%=cats_url%>">All of our Cats!</a></li>
+<% else %>
+    <li><a href="<%= edit_cat_url(current_cat) %>">Edit cat</a></li>
+    <li><a href="<%= cat_url(current_cat) %>">Take a look at our cat</a></li>
+    <!--ID passed in implicitely-->
+<% end %>
+
+<table>
+  <colgroup>
+    <!-- <col style="background-color: #0f0">
+    <col span="2"> -->
+  </colgroup>
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Age</td>
+    <td><%= current_cat.age %></td> <!-- cat.age -->
+  </tr>
+  <tr>
+    <td>Birth_Date</td>
+    <td><%= current_cat.birth_date %></td>   <!-- cat.birth_date -->
+  </tr>
+  <tr>
+    <td>Color</td>
+    <td><%= current_cat.color %></td>   <!-- cat.color -->
+  </tr>
+  <tr>
+    <td>Sex</td>
+    <td><%= current_cat.sex %></td> <!-- cat.sex -->
+  </tr>
+</table>
