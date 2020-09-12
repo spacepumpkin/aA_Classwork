@@ -1,0 +1,17 @@
+li {
+    display: inline;
+    // justify-content: space-between;
+    // margin: 5px;
+    // padding: 10px;
+}
+
+.section-links > li {
+    padding: 10px;
+}
+
+
+.a-list:hover {
+	background-color: $lightest-gray;
+	text-decoration: underline;
+}
+
