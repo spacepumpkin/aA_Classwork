@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redditclone</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if logged_in? %>
+      <h3>Hi, <%= current_user %></h3>
+      <%= link_to "Logout", session_url, method: :delete %>
+    <% else %>
+      <%= link_to "Login", new_session_path %>
+    <% end %>
+    
+    <% if flash[:errors] %>
+    <span><%= flash[:errors].join(", ") %></span>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
