@@ -1,0 +1,42 @@
+* {
+  font-family: 'Open Sans';
+}
+
+.clock > div {
+  padding: 20px;
+  width: 500;
+  height: 100;
+  border: 1px solid black;
+  display: flex; 
+  justify-content: space-between;
+}
+.clock > div > span{
+
+}
+
+#tabs {
+  width: 300px;
+  height: 300px;
+  border: 1px solid blue;
+}
+.header{
+  display: flex;
+    justify-content: space-around;
+    /* border: 1px solid blue; */
+    
+}
+.header > span {
+    border: 1px solid blue;
+    border-radius: 25px;
+    width:100%;
+    text-align: center;
+}
+
+.content {
+    text-align: center;
+}
+.bold{
+    font-weight: bold;
+    font-size: 20px;
+}
+
