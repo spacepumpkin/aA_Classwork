@@ -1,0 +1,66 @@
+/* div {
+  display: block;
+} */
+
+#root {
+    /* display: block; */
+    text-align: center;
+    margin: 0 auto;
+    /* border: 2px solid black; */
+    width: 600px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 0;
+}
+
+.row {
+  /* display: block; */
+  /* position: relative; */
+  /* height: 100%; */
+  width: 100%;
+  margin: 0 auto;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.row:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.tile {
+  /* display: inline-block; */
+  /* box-sizing: border-box; */
+  height: 20px;
+  width: 20px;
+  /* ! NEED TO FLOAT LEFT TO ELIMINATE SPACE BETWEEN ROWS */
+  float: left; 
+  margin: auto auto;
+  background-color: lightgray;
+  border-style: outset;
+  border-width: 2px;
+  line-height: 20px ;
+  padding-left: 3px;
+  font-size: 14px;
+  position: relative;
+  text-align: center;
+}
+
+.explored {
+  border-style: inset;
+}
+
+.flagged {
+  color: red;
+  /* font-size: 14px; */
+}
+
+.bombed {
+  color: red;
+}
+
