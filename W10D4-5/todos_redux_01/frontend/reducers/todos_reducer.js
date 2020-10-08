@@ -1,4 +1,8 @@
-import { RECEIVE_TODO, RECEIVE_TODOS } from '../actions/todo_actions.js';
+import { 
+  RECEIVE_TODO, 
+  RECEIVE_TODOS, 
+  REMOVE_TODO, 
+  UPDATE_TODO } from '../actions/todo_actions.js';
 
 // Test Cases 
 const initialState = {
@@ -18,7 +22,8 @@ const initialState = {
 
 const todosReducer = (prevState = initialState, action) => {
   Object.freeze(prevState);
-  const nextState = Object.assign({}, prevState);
+  const nextState = Object.assign({}, prevState); // shallow dup (But ok with .freeze?)
+  // nextState = JSON.parse(JSON.stringify(prevState)); // deep dup
 
   switch (action.type) {
     case RECEIVE_TODOS:
@@ -26,9 +31,21 @@ const todosReducer = (prevState = initialState, action) => {
         nextState[todo.id] = todo;
       })
       return nextState;
+
     case RECEIVE_TODO:
       nextState[action.todo.id] = action.todo;
       return nextState;
+
+    case REMOVE_TODO:
+      delete nextState[action.todo.id];
+      return nextState;
+
+    case UPDATE_TODO:
+      const field = action.field;
+      nextState[action.todoId][field] = action.value;
+      // debugger
+      return nextState;
+
     default:
       return prevState;
   }

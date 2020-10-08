@@ -7,7 +7,7 @@ import Root from "./components/root.jsx";
 import allTodos from "./reducers/selectors.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("rendering root...")
+  console.log("React is starting at root element...")
   const root = document.getElementById("root");
   const store = configureStore();
   window.store = store;

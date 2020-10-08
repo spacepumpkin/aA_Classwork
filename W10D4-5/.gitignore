@@ -1,3 +1,6 @@
+.DS_Store
 todos_redux_01_solution
 todos_redux_01/node_modules/
 todos_redux_01/bundle.js
+todos_redux_01/bundle.js.map
+todos_redux_02_solution

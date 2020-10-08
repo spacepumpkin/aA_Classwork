@@ -1,21 +1,26 @@
-import {connect} from 'react-redux';
-import todoList from './todo_list.jsx';
+import { connect } from 'react-redux';
+import TodoList from './todo_list.jsx';
 import allTodos from '../../reducers/selectors';
-import { receiveTodo, receiveTodos } from "../../actions/todo_actions"
+import { receiveTodo, receiveTodos, removeTodo, updateTodo } from "../../actions/todo_actions"
 
 const mapStateToProps = (state) => {
-    const todos = allTodos(state);
-    return ({
-        todos: todos
-    })
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return ( {
-    receiveTodo: (todo) => ( dispatch(receiveTodo(todo)) )
+  console.log("todo-list container is mapping state to props...");
+  const todos = allTodos(state);
+  return ({
+    todos: todos
   })
 }
 
+const mapDispatchToProps = (dispatch) => {
+  console.log("todo-list container is mapping dispatch to props...");
+  return ({
+    receiveTodo: (todo) => (dispatch(receiveTodo(todo))),
+    removeTodo: (todo) => (dispatch(removeTodo(todo))),
+    updateTodo: (todoId, field, value) => (dispatch(updateTodo(todoId, field, value)))
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
 
 
 
