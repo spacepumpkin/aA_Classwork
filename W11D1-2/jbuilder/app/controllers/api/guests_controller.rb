@@ -5,7 +5,7 @@ class Api::GuestsController < ApplicationController
   end
 
   def show
-    @guest = Guest.find_by(id: params[:id])
+    @guest = Guest.includes(:gifts).find_by(id: params[:id])
     render :show
   end
 end
